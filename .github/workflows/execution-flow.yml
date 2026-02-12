@@ -76,10 +76,24 @@ jobs:
       - name: Deploy
         run: echo "Deploying..."
   report:
+    needs: [lint, deploy]
     if: failure()
     runs-on: ubuntu-latest
     steps:
       - name: Output information
         run: |
           echo "Something went wrong"
-          echo "${{ github.action_repository }}"
+          echo "action_repository: ${{ github.action_repository }}"
+          echo "action: ${{ github.action }}"
+          echo "action_path: ${{ github.action_path }}"
+          echo "action_ref: ${{ github.action_ref }}"
+          echo "actor: ${{ github.actor }}"
+          echo "event: ${{ github.event }}"
+          echo "event_name: ${{ github.event_name }}"
+          echo "repository: ${{ github.repository }}"
+          echo "repository_owner: ${{ github.repository_owner }}"
+          echo "repositoryUrl: ${{ github.repositoryUrl }}"
+          echo "sha: ${{ github.sha }}"
+          echo "token: ${{ github.token }}"
+          echo "workflow: ${{ github.workflow }}"
+          echo "workspace: ${{ github.workspace }}"
